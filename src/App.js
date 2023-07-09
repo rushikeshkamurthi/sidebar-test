@@ -1,25 +1,121 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { FaHome } from 'react-icons/fa';
+import Layout from './components/Layout';
+import Sidebar from './components/Sidebar';
+import { RouteContext } from './context/RouteContext';
+import Login from './pages/User/Login';
+import Dashboard from './pages/Dashboard';
+import Analysis from './pages/Dashboard/Analysis';
+import Monitor from './pages/Dashboard/Monitor';
+import Workplace from './pages/Dashboard/Workplace';
+import Projects from './pages/Projects';
+import ProjectList from './pages/Projects/ProjectList';
+import ProjectDetails from './pages/Projects/ProjectDetails';
+import ProjectSettings from './pages/Projects/ProjectSettings';
+import NotFound from './pages/NotFound';
 
-function App() {
+const RouteConfig = [
+  {
+    name: 'Login',
+    locale: 'user.login',
+    path: '/login',
+    component: Login,
+    hideInMenu: true,
+  },
+  {
+    path: '/dashboard',
+    locale: 'dashboard',
+    name: 'Dashboard',
+    icon: <FaHome />,
+    exact: true,
+    component: Dashboard,
+    subRoutes: [
+      {
+        path: '/dashboard/analysis',
+        locale: 'dashboard.analysis',
+        name: 'Analysis',
+        component: Analysis,
+        exact: true,
+        accessTO: ['admin'],
+      },
+      {
+        path: '/dashboard/monitor',
+        locale: 'dashboard.monitor',
+        component: Monitor,
+        name: 'Monitor',
+        exact: true,
+      },
+      {
+        path: '/dashboard/workplace',
+        locale: 'dashboard.workplace',
+        component: Workplace,
+        name: 'Workplace',
+        exact: true,
+      },
+    ],
+  },
+  {
+    path: '/projects',
+    locale: 'projects',
+    name: 'Projects',
+    icon: <FaHome />,
+    redirect: '/projects/list',
+    subRoutes: [
+      {
+        path: '/projects/list',
+        locale: 'projects.list',
+        name: 'Projects',
+        icon: <FaHome />,
+        exact: true,
+        component: ProjectList,
+      },
+      {
+        path: '/projects/:id',
+        locale: 'projects.details',
+        name: 'Project Details',
+        hideInMenu: true,
+        icon: <FaHome />,
+        key: 'projects',
+        exact: true,
+        component: ProjectDetails,
+      },
+      {
+        path: '/projects/:id/settings',
+        locale: 'projects.settings',
+        icon: <FaHome />,
+        name: 'Settings',
+        parentKey: 'details',
+        exact: true,
+        component: ProjectSettings,
+      },
+    ],
+  },
+  {
+    path: '*',
+    component: NotFound,
+  },
+];
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <RouteContext.Provider value={{ routes: RouteConfig }}>
+        <Layout>
+          <div className="main-content">
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/dashboard/*" element={<Dashboard />} />
+              <Route path="/projects/*" element={<Projects />} />
+              <Route path="/*" element={<NotFound />} />
+            </Routes>
+          </div>
+        </Layout>
+      </RouteContext.Provider>
+    </Router>
   );
-}
+};
 
 export default App;
+
+
