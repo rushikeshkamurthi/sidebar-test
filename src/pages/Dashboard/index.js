@@ -1,12 +1,12 @@
 import React from 'react';
-import { Outlet, NavLink, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Analysis from './Analysis';
 import Monitor from './Monitor';
 import Workplace from './Workplace';
 import '../../App.css'
 const Dashboard = () => {
   return (
-    <div>
+    <div className='dashboard'>
       <h1>Dashboard</h1>
       <div className='dashboard-content'>
       <Routes>

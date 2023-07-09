@@ -19,7 +19,7 @@ const Sidebar = () => {
   return (
     <motion.div animate={{ width: isOpen ? "250px" : "45px" }} className='sidebar'>
         <div className='top-section'>
-            {isOpen && <h1>IDIGIols</h1>}
+            {isOpen && <h1>IDIGI </h1>}
             <div onClick={toggle}>|||</div>
         </div>
         <div className='routes'>

@@ -6,6 +6,9 @@
 .main-container {
   display: flex;
 }
+.content {
+  width: 100%;
+}
 .sidebar {
    background-color: rgb(0,7,61);
    color: white;
@@ -76,6 +79,23 @@ line-height: 0;
   border-right: solid white 4px;
   opacity: 0.7;
 }
+.main-content{
+  height: 100%;
+
+}
 .dashboard-content{
   background-color: rgb(246, 242, 246);
+  margin: 20px;
+}
+
+.project-context{
+  background-color: rgb(246, 242, 246);
+  margin: 20px;
+}
+.dashboard{
+
+}
+.bread-crumb{
+  padding: 10px;
+  background-color: white;
 }

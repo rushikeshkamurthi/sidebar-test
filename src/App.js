@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { FaHome } from 'react-icons/fa';
+import { FaHome, FaProjectDiagram } from 'react-icons/fa';
 import Layout from './components/Layout';
-import Sidebar from './components/Sidebar';
 import { RouteContext } from './context/RouteContext';
 import Login from './pages/User/Login';
 import Dashboard from './pages/Dashboard';
@@ -14,7 +13,8 @@ import ProjectList from './pages/Projects/ProjectList';
 import ProjectDetails from './pages/Projects/ProjectDetails';
 import ProjectSettings from './pages/Projects/ProjectSettings';
 import NotFound from './pages/NotFound';
-
+import {BiSolidDashboard, BiSolidLogInCircle} from 'react-icons/bi'
+import './App.css'
 const RouteConfig = [
   {
     name: 'Login',
@@ -22,12 +22,13 @@ const RouteConfig = [
     path: '/login',
     component: Login,
     hideInMenu: true,
+    icon: <BiSolidLogInCircle />,
   },
   {
     path: '/dashboard',
     locale: 'dashboard',
     name: 'Dashboard',
-    icon: <FaHome />,
+    icon: <BiSolidDashboard />,
     exact: true,
     component: Dashboard,
     subRoutes: [
@@ -59,14 +60,14 @@ const RouteConfig = [
     path: '/projects',
     locale: 'projects',
     name: 'Projects',
-    icon: <FaHome />,
+    icon: <FaProjectDiagram />,
     redirect: '/projects/list',
     subRoutes: [
       {
         path: '/projects/list',
         locale: 'projects.list',
         name: 'Projects',
-        icon: <FaHome />,
+        
         exact: true,
         component: ProjectList,
       },
@@ -75,7 +76,7 @@ const RouteConfig = [
         locale: 'projects.details',
         name: 'Project Details',
         hideInMenu: true,
-        icon: <FaHome />,
+        
         key: 'projects',
         exact: true,
         component: ProjectDetails,
@@ -83,7 +84,7 @@ const RouteConfig = [
       {
         path: '/projects/:id/settings',
         locale: 'projects.settings',
-        icon: <FaHome />,
+        
         name: 'Settings',
         parentKey: 'details',
         exact: true,
@@ -103,6 +104,7 @@ const App = () => {
       <RouteContext.Provider value={{ routes: RouteConfig }}>
         <Layout>
           <div className="main-content">
+            <div className='bread-crumb'><h1>Bread Crumbs</h1></div>
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/dashboard/*" element={<Dashboard />} />
