@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import Analysis from './Analysis';
 import Monitor from './Monitor';
 import Workplace from './Workplace';
@@ -9,11 +9,12 @@ const Dashboard = () => {
     <div className='dashboard'>
       <h1>Dashboard</h1>
       <div className='dashboard-content'>
-      <Routes>
+      {/* <Routes>
       <Route  path='analysis' element={<Analysis/>} ></Route>
       <Route  path='monitor' element={<Monitor/>} ></Route>
       <Route  path='workplace' element={<Workplace/>} ></Route>
-      </Routes>
+      </Routes> */}
+      <Outlet/>
       </div>
     </div>
   );

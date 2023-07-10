@@ -7,14 +7,10 @@ import '../App.css'
 import SidebarMenu from './SidebarMenu';
 const Sidebar = () => {
   const { routes } = useContext(RouteContext);
-  const location = useLocation();
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () =>{
       setIsOpen(!isOpen);
   }
-  const isActive = (path) => {
-    return location.pathname === path;
-  };
 
   return (
     <motion.div animate={{ width: isOpen ? "250px" : "45px" }} className='sidebar'>
@@ -25,9 +21,9 @@ const Sidebar = () => {
         <div className='routes'>
         {routes.map((route, index) =>{
                if(route.subRoutes){
-                return (<SidebarMenu route={route}/>);
+                return (<SidebarMenu key={index} route={route}/>);
             } 
-            return(route.name ?
+            return( (route.name && !route.hideInMenu) ?
                 <NavLink key={index} to={route.path} activeClassName='active' className='link' >
                     <div className='icon'>{route.icon}</div>
                     <div className='link-text'>{route.name}</div>

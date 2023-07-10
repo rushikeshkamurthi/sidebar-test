@@ -21,7 +21,7 @@ function SidebarMenu({ route }) {
           <NavLink
             key={index}
             to={route.path}
-            activeClassName='sublink-active'
+            activeclassname='sublink-active'
             className="sub-link"
           >
             <div className="icon">{route.icon}</div>
