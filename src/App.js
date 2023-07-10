@@ -18,23 +18,23 @@ const App = () => {
               <Breadcrumb />{" "}
             </div>
             <Suspense fallback={<div>Loading...</div>}>
-            <Routes>
-            <Route index element={<Login />} />
-              {RouteConfig.map((route, index) => (
-                <Route path={route.path} key={index} element={route.element}>
-                  {route.subRoutes &&
-                    route.subRoutes.map((route, idx) => {
-                      return (
-                        <Route
-                          path={route.path}
-                          key={idx}
-                          element={route.element}
-                        ></Route>
-                      );
-                    })}
-                </Route>
-              ))}
-            </Routes>
+              <Routes>
+                <Route index element={<Login />} />
+                {RouteConfig.map((route, index) => (
+                  <Route path={route.path} key={index} element={route.element}>
+                    {route.subRoutes &&
+                      route.subRoutes.map((route, idx) => {
+                        return (
+                          <Route
+                            path={route.path}
+                            key={idx}
+                            element={route.element}
+                          ></Route>
+                        );
+                      })}
+                  </Route>
+                ))}
+              </Routes>
             </Suspense>
           </div>
         </Layout>

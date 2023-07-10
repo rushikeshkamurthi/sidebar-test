@@ -1,7 +1,7 @@
-import React from 'react';
-import { useLocation, Link, useMatch } from 'react-router-dom';
-import { useContext } from 'react';
-import { RouteContext } from '../context/RouteContext';
+import React from "react";
+import { useLocation, Link } from "react-router-dom";
+import { useContext } from "react";
+import { RouteContext } from "../context/RouteContext";
 
 const Breadcrumb = () => {
   const { routes } = useContext(RouteContext);
@@ -42,7 +42,7 @@ const Breadcrumb = () => {
     <div className="breadcrumb">
       {breadcrumbItems.map((route, index) => (
         <span key={index}>
-          {index > 0 && ' / '}
+          {index > 0 && " / "}
           {route.hideInMenu ? (
             <span>{route.name}</span>
           ) : (

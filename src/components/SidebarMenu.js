@@ -6,30 +6,36 @@ function SidebarMenu({ route }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {
     setIsOpen(!isOpen);
-  }
+  };
   return (
     <div className="menu-container">
-    <div className="menu">
-      <div className="menu-item">
-        <div className="icon">{route.icon}</div>
-        <div className="link-text">{route.name}</div>
+      <div className="menu">
+        <div className="menu-item">
+          <div className="icon">{route.icon}</div>
+          <div className="link-text">{route.name}</div>
+        </div>
+        <div className="arrow">
+          {isOpen ? (
+            <FaAngleDown onClick={toggle} />
+          ) : (
+            <FaAngleRight onClick={toggle} />
+          )}
+        </div>
       </div>
-      <div className="arrow">{ isOpen ? <FaAngleDown  onClick={toggle}/>:<FaAngleRight onClick={toggle}/> }</div>
-      </div>
-      {isOpen && route.subRoutes.map((route, index) => {
-        return (
-          <NavLink
-            key={index}
-            to={route.path}
-            activeclassname='sublink-active'
-            className="sub-link"
-          >
-            <div className="icon">{route.icon}</div>
-            <div className="link-text">{route.name}</div>
-          </NavLink>
-        );
-      })}
-   
+      {isOpen &&
+        route.subRoutes.map((route, index) => {
+          return (
+            <NavLink
+              key={index}
+              to={route.path}
+              activeclassname="sublink-active"
+              className="sub-link"
+            >
+              <div className="icon">{route.icon}</div>
+              <div className="link-text">{route.name}</div>
+            </NavLink>
+          );
+        })}
     </div>
   );
 }
