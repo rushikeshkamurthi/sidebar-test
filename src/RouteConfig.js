@@ -7,6 +7,7 @@ const Dashboard = lazy(() => import('./pages/Dashboard'));
 const Analysis = lazy(() => import('./pages/Dashboard/Analysis'));
 const Monitor = lazy(() => import('./pages/Dashboard/Monitor'));
 const Workplace = lazy(() => import('./pages/Dashboard/Workplace'));
+const Projects = lazy(() => import('./pages/Projects'));
 const ProjectList = lazy(() => import('./pages/Projects/ProjectList'));
 const ProjectDetails = lazy(() => import('./pages/Projects/ProjectDetails'));
 const ProjectSettings = lazy(() => import('./pages/Projects/ProjectSettings'));
@@ -61,6 +62,7 @@ const RouteConfig = [
     locale: 'projects',
     name: 'Projects',
     icon: <FaProjectDiagram/>,
+    element: <Projects />,
     redirect: '/projects/list',
     subRoutes: [
       {

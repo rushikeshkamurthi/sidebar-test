@@ -3,9 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import { RouteContext } from "./context/RouteContext";
 import Login from "./pages/User/Login";
-import Dashboard from "./pages/Dashboard";
-import Projects from "./pages/Projects";
-import NotFound from "./pages/NotFound";
 import "./App.css";
 import Breadcrumb from "./components/Breadcrumb";
 import RouteConfig from "./RouteConfig";
@@ -37,11 +34,6 @@ const App = () => {
                     })}
                 </Route>
               ))}
-
-              {/* <Route path="/login" element={<Login />} />
-              <Route path="/dashboard/*" element={<Dashboard />} />
-              <Route path="/projects/*" element={<Projects />} />
-              <Route path="/*" element={<NotFound />} /> */}
             </Routes>
             </Suspense>
           </div>
